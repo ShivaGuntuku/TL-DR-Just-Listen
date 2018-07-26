@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Here all Posts...</h1>
+	{% for query in queryset_list %}
+        {{ query.title }}<br/>
+        {{ query.content }}
+    {% endfor %}
+</body>
+</html>
