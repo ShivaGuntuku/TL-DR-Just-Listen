@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 
 from . import views
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path('view/<int:id>', views.retrive_post, name='retrive'),
     path('<int:id>/update', views.update_post, name='update'),
     path('<int:id>/delete', views.delete_post, name='delete'),
+    # path(r'^accounts/', include('allauth.urls')),
 ]

@@ -4,7 +4,6 @@
 Home Button
 Login/logout and signup pages
 content into voice
-unique URL
 Public and Private Content
-book marking
 TTS
+

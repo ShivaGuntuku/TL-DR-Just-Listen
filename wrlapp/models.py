@@ -11,3 +11,7 @@ class Posts(models.Model):
 	read_time = models.TimeField(null = True, blank = True)
 	updated = models.DateTimeField(auto_now = True, auto_now_add = False)
 	create_date = models.DateTimeField(auto_now = False, auto_now_add = True)
+
+
+# class Users(models.Model):
+    
