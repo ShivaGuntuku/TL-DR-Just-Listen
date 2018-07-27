@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+	<div class="container">
+		<h3 class="center">Update Your Post Here</h3>
+		<form method="POST" action="" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{form}}<br/>
+			<input type="submit" class="btn btn-primary right" value="Update Post">
+		</form>
+  </div>    
+{% endblock content %}

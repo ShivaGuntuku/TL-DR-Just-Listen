@@ -1,13 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container row">
 	<h1>Here all Posts...</h1>
 	{% for query in queryset_list %}
-        {{ query.title }}<br/>
-        {{ query.content }}
+    <div class="col s12 m12">
+      <div class="card blue-grey darken-3 hoverable">
+        <div class="card-content white-text">
+          <span class="card-title">{{ query.title }}</span>
+          <p>{{ query.content }}</p>
+          <span class="card-title activator text-darken-4">
+          	<a href="view/{{query.id}}" class="white-text"><i class="material-icons right">arrow_forward</i></a></span>
+        </div>
+      </div>
+    </div>
     {% endfor %}
-</body>
-</html>
+  </div>
+{% endblock content %}
+

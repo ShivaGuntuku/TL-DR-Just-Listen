@@ -1,23 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Create</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
 	<div class="container">
-		<h1 class="center">Create Your Post Here</h1>
-    <form class="col s12">
-        <div class="input-field col s12">
-          <input id="title" type="text" class="validate">
-          <label for="title">Title</label>
-        </div>
-        <div class="input-field col s12">
-          <label for="last_name">Last Name</label>
-          <textarea></textarea>
-        </div>
+		<h3 class="center">Create Your Post Here</h3>
+    <form method="POST" action="" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{form}}<br/>
+      <input type="submit" class="btn btn-primary right" value="Create Post">
     </form>
   </div>	
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-</body>
-</html>
+{% endblock content %}
