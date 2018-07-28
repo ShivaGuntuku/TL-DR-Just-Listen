@@ -1,19 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load socialaccount %}
 <div class="container row">
-	<h1>Here all Posts...</h1>
-	{% for query in queryset_list %}
-    <div class="col s12 m12">
-      <div class="card blue-grey darken-3 hoverable">
-        <div class="card-content white-text">
-          <span class="card-title">{{ query.title }}</span>
-          <p>{{ query.content }}</p>
-          <span class="card-title activator text-darken-4">
-          	<a href="view/{{query.id}}" class="white-text"><i class="material-icons right">arrow_forward</i></a></span>
+  {% if user.is_authenticated %}
+  	<h1>Here all Posts...</h1>
+  	{% for query in queryset_list %}
+      <div class="col s12 m12">
+        <div class="card blue-grey darken-3 hoverable">
+          <div class="card-content white-text">
+            <span class="card-title">{{ query.title }}</span>
+            <p>{{ query.content }}</p>
+            <span class="card-title activator text-darken-4">
+            	<a href="view/{{query.id}}" class="white-text"><i class="material-icons right">arrow_forward</i></a></span>
+          </div>
         </div>
       </div>
-    </div>
     {% endfor %}
-  </div>
+  {% else %}
+    <h1>You're not Signed In..</h1>
+  {% endif %}
+</div>
 {% endblock content %}
 

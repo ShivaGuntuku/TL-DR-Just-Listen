@@ -20,5 +20,8 @@ from django.urls import include, path, re_path
 urlpatterns = [
     path('', include('wrlapp.urls')),
     path('admin/', admin.site.urls),
-    re_path(r'^accounts/', include('allauth.urls')),
+
+    # User Management
+    # path('users/', include('users.urls')), # new
+    path('accounts/', include('allauth.urls')),
 ]

@@ -55,3 +55,7 @@ def delete_post(request, id):
 	instance.delete()
 	messages.success(request, "Post is Deleted.")
 	return redirect("wrlapp:show")
+
+def how_it_work(request):
+	context = {}
+	return render(request, 'how_it_works.html', context)
