@@ -1,11 +1,25 @@
-{% extends 'app_base.html' %}
+{% extends 'base.html' %}
 {% block content %}
-	<div class="container">
-		<h3 class="center">Create Your Post Here</h3>
-    <form method="POST" action="" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{form}}<br/>
+{% load widget_tweaks %}
+<div class="container post_create">
+	<h3 class="center">Create Your Post Here</h3>
+    <form method="POST" action="" enctype="multipart/form-data" novalidate>
+    	{% csrf_token %}
+    	<div class="input-field col s12">
+          {{ form.title|add_class:"input-field" }}
+          <label for="id_title">Title</label>
+        </div>
+        <div class="input-field col s12">
+          {{ form.content|add_class:"materialize-textarea" }}
+          <label for="id_content">Content</label>
+        </div>
+        <p>
+	      <label>
+	      	{{ form.is_public|add_class:"filled-in" }}
+	        <span>Is Public</span>
+	      </label>
+    	</p>
       <input type="submit" class="btn btn-primary right" value="Create Post">
     </form>
-  </div>	
+</div>
 {% endblock content %}

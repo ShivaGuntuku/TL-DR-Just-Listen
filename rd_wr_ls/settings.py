@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.github',
-
+    'widget_tweaks',
+    'rest_framework',
+    
     'wrlapp',
     'users',
 

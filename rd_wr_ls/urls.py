@@ -17,14 +17,12 @@ from django.contrib import admin
 from django.urls import include, path, re_path
 
 from wrlapp import views as wrlappview
-
+from wrlapp.views import ListPostsView
 
 urlpatterns = [
     path('', include('wrlapp.urls')),
     path('', wrlappview.show_all, name='home'),
     path('admin/', admin.site.urls),
-
-    # User Management
-    # path('users/', include('users.urls')), # new
     path('accounts/', include('allauth.urls')),
+    re_path('api/(?P<version>(v1|v2))/posts', ListPostsView.as_view(), name="posts-all"),
 ]

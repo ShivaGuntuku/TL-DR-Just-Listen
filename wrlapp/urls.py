@@ -1,6 +1,7 @@
 from django.urls import include, path
 
 from . import views
+from .views import ListPostsView
 
 app_name = 'wrlapp'
 
@@ -11,6 +12,7 @@ urlpatterns = [
     path('view/<int:id>', views.retrive_post, name='retrive'),
     path('<int:id>/update', views.update_post, name='update'),
     path('<int:id>/delete', views.delete_post, name='delete'),
-    path('how_it_work', views.how_it_work, name="work")
+    path('how_it_work', views.how_it_work, name="work"),
+    # path('posts/', ListPostsView.as_view(), name="posts-all")
     # path(r'^accounts/', include('allauth.urls')),
 ]

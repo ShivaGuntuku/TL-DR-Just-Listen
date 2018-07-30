@@ -1,8 +1,4 @@
 /*Create Post Styles*/
-#id_title {
-
-}
-
 #id_content {
 	height: 100%;
 	width: 100%;
@@ -20,4 +16,3 @@ div.col{
 	display:inline-block;    
 	z-index: 99999;
 }
-

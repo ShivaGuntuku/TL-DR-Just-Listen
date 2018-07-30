@@ -1,18 +1,38 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
+from django.db.models import Q
+from django.conf import settings
 from django.shortcuts import render, get_object_or_404, redirect
 
 from allauth.account.views import SignupView, LoginView
+from rest_framework import generics
 from .forms import PostForm
 from .models import Posts
+from .serializers import PostsSerializer
 
+
+class ListPostsView(generics.ListAPIView):
+	"""
+	Provides a get method handler.
+	"""
+	queryset = Posts.objects.all()
+	serializer_class = PostsSerializer
 
 def show_all(request):
 	queryset_list = Posts.objects.all()
-	context = {
-		'queryset_list':queryset_list,
-	}
+	if not request.user.is_authenticated:
+		queryset_list = queryset_list.filter(
+			   Q(is_public = True))
+		context = {
+			'queryset_list':queryset_list,
+		}
+	else:
+		queryset_list = queryset_list.filter(
+			   Q(user_id = request.user.id))
+		context = {
+				'queryset_list':queryset_list,
+			}
 	return render(request, 'index.html', context)
 
 
@@ -72,8 +92,8 @@ def how_it_work(request):
 
 
 class MySignupView(SignupView):
-    template_name = 'my_signup.html'
+	template_name = 'my_signup.html'
 
 
 class MyLoginView(LoginView):
-    template_name = 'my_login.html'
+	template_name = 'my_login.html'
