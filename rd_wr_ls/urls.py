@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path, re_path
 
+from wrlapp import views as wrlappview
+
 
 urlpatterns = [
     path('', include('wrlapp.urls')),
+    path('', wrlappview.show_all, name='home'),
     path('admin/', admin.site.urls),
 
     # User Management

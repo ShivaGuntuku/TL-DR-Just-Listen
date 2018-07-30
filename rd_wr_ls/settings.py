@@ -72,6 +72,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'rd_wr_ls.urls'
+LOGIN_REDIRECT_URL = 'home'
 
 TEMPLATES = [
     {
