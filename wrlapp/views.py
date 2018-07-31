@@ -5,12 +5,46 @@ from django.db.models import Q
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404, redirect
 
+# from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+# from django.contrib.auth import authenticate, login
+from rest_framework_jwt.settings import api_settings
+from rest_framework import permissions
+
 from allauth.account.views import SignupView, LoginView
 from rest_framework import generics
 from .forms import PostForm
 from .models import Posts
 from .serializers import PostsSerializer
 
+# JWT settings
+jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
+
+User = get_user_model()
+
+class LoginView(generics.CreateAPIView):
+	"""POST AUTH/login"""
+	permission_classes = (permissions.AllowAny,)
+
+	queryset = User.objects.all()
+
+	def post(self, request, *args, **kwargs):
+		username = request.data.get("username", "")
+		password = request.data.get("password", "")
+		user = authenticate(request, username=username, password=password)
+		if user is not None:
+			# login saves the user’s ID in the session,
+			# using Django’s session framework.
+			login(request, user)
+			serializer = TokenSerializer(data={
+				# using drf jwt utility functions to generate a token
+				"token": jwt_encode_handler(
+					jwt_payload_handler(user)
+				)})
+			serializer.is_valid()
+			return Response(serializer.data)
+		return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 class ListPostsView(generics.ListAPIView):
 	"""
@@ -18,6 +52,8 @@ class ListPostsView(generics.ListAPIView):
 	"""
 	queryset = Posts.objects.all()
 	serializer_class = PostsSerializer
+	permission_classes = (permissions.IsAuthenticated,)
+
 
 def show_all(request):
 	queryset_list = Posts.objects.all()
@@ -34,6 +70,7 @@ def show_all(request):
 				'queryset_list':queryset_list,
 			}
 	return render(request, 'index.html', context)
+
 
 
 @login_required(login_url='/accounts/login/')
