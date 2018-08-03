@@ -6,9 +6,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     <link rel="stylesheet" href="{% static 'css/internal_posts.css' %}" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   </head>
+  
   <body>
     {% load socialaccount %}
     <nav>
@@ -29,13 +31,14 @@
         </ul>
       </div>
     </nav>
-
+    
     <ul class="sidenav" id="mobile-demo">
       <li><a href="sass.html">Sign UP</a></li>
       <li><a href="badges.html">How It Works </a></li>
       <li><a href="collapsible.html">Login</a></li>
       <li><a href="mobile.html">Mobile</a></li>
     </ul>
+    
     {% block content %}{% endblock %}
     <script type="text/javascript" src="{% static 'js/internal_post.js' %}"></script>
   </body>
