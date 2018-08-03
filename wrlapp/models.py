@@ -16,3 +16,14 @@ class Posts(models.Model):
 
 	def __str__(self):
 		return  self.title
+
+
+class FetchUrlContent(models.Model):
+	user = models.ForeignKey(settings.AUTH_USER_MODEL,
+							 default = 1,
+							 on_delete = models.CASCADE)
+	url = models.CharField(max_length = 500)
+	getUrlContent = models.TextField()
+
+	def __str__(self):
+		return  self.url

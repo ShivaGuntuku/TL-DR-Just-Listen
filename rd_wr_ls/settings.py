@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
     'widget_tweaks',
     'rest_framework',
+    'django_markup',
     
     'wrlapp',
     'users',

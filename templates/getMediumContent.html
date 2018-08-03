@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load widget_tweaks %}
+<div class="container post_create">
+	<h3 class="center">Create Your Post Here</h3>
+    <form method="POST" action="" enctype="multipart/form-data" novalidate>
+    	{% csrf_token %}
+    	<div class="input-field col s12">
+          {{ form.url|add_class:"input-field" }}
+          <label for="id_url">URL</label>
+        </div>
+      <input type="submit" class="btn btn-primary right" value="Create Post">
+    </form>
+</div>
+{% endblock content %}

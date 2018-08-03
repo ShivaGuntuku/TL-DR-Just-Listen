@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load socialaccount %}
+{% load markup_tags %}
+<div class="container row pocket">  
+    {% for query in queryset_list %}
+    <div class="col s12 m12">
+      <div class="card white-grey darken-3 ">
+        <span class="card-title activator text-darken-4">
+            <a href="view/{{query.id}}" class="dark-text-text"><i class="material-icons right">arrow_forward</i></a></span>
+        <div class="card-content dark-text pocket-inside-content">
+          <p>{{ query.getUrlContent|apply_markup:"markdown" }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

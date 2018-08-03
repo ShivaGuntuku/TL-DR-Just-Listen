@@ -13,10 +13,16 @@ from rest_framework import permissions
 
 from allauth.account.views import SignupView, LoginView
 from rest_framework import generics
-from .forms import PostForm
-from .models import Posts
+from .forms import PostForm, FetchUrlContentForm
+from .models import Posts, FetchUrlContent
 from .serializers import PostsSerializer
 
+# external assets here
+from assets.customUtill import mediumContent
+
+from requests import get
+
+ 
 # JWT settings
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
@@ -124,6 +130,34 @@ def how_it_work(request):
 	context = {}
 	return render(request, 'how_it_works.html', context)
 
+
+def getMediumContent(request):
+	form = FetchUrlContentForm(request.POST or None, request.FILES or None)
+	if form.is_valid():
+		instance = form.save(commit = False)
+		instance.user = request.user
+		instance.getUrlContent = mediumContent(form.cleaned_data['url'])
+		instance.save()
+		messages.success(request, "Post Successfully Created")
+		return redirect("wrlapp:mediumViewContent")
+	context = {
+		'form' : form
+	}
+	return render(request,  "getMediumContent.html", context)
+
+def retriveMediumContent(request,id):
+	queryset_list = FetchUrlContent.objects.filter(id = id)
+	context = {
+		'queryset_list': queryset_list
+	}
+	return render(request,'retriveMediumContent.html', context)
+
+def showMediumContent(request):
+	queryset_list = FetchUrlContent.objects.all()
+	context = {
+		'queryset_list': queryset_list
+	}
+	return render(request, 'showMediumContent.html', context)
 
 
 

@@ -1,4 +1,12 @@
 /*Create Post Styles*/
+h1 h2 h3 h4 h5 h6{line-height: 1.5px !important;}
+h1{font-size:36px !important;}
+h2{font-size:32px !important;}
+h3{font-size:28px !important;}
+h4{font-size:24px !important;}
+h5{font-size:20px !important;}
+h6{font-size:16px !important;}
+
 #id_content {
 	height: 100%;
 	width: 100%;
@@ -16,3 +24,12 @@ div.col{
 	display:inline-block;    
 	z-index: 99999;
 }
+.pocket-inside-content {
+	height: 500px;
+	overflow: hidden
+}
+.pocket img{
+    width: 100%;
+    object-fit: contain;
+}
+
