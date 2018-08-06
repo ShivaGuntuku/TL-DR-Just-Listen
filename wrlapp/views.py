@@ -58,7 +58,7 @@ class ListPostsView(generics.ListAPIView):
 	"""
 	queryset = Posts.objects.all()
 	serializer_class = PostsSerializer
-	permission_classes = (permissions.IsAuthenticated,)
+	# permission_classes = (permissions.IsAuthenticated,)
 
 
 def show_all(request):
